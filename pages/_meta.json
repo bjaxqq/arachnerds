@@ -1,15 +1,13 @@
 {
   "index": "Introduction",
-  "another": "Another Page",
-  "advanced": "Advanced (A Folder)",
-  "about": {
-    "title": "About",
-    "type": "page"
-  },
+  "about": "About",
+  "game-engine": "Game Engine",
+  "game-code-details": "Game Code Details",
+  "walkthroughs": "Walkthroughs",
   "contact": {
     "title": "Contact ↗",
     "type": "page",
-    "href": "https://twitter.com/shuding_",
+    "href": "mailto:brooksjackson@proton.me",
     "newWindow": true
   }
 }
