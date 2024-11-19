@@ -1,1 +1,68 @@
 # Enhanced Map Tiles
+
+The work that we put into our enhanced map tiles was arguably our most creative and impressive work during the entire semester.
+
+## Swinging Anchor Tile
+
+/* Add image here */
+
+`Anchor` is an interactive anchor point that allows players to swing in an arc using a physics-based mechanic. This feature required intricate calculations to integrate with the player’s movement system and to get the arc right.
+
+### How It Works
+- **Player Interaction**
+  When the player approaches the anchor and presses `E`, they "attach" to the anchor point, initiating the swinging.
+  
+- **Swinging Motion**
+  Using polar coordinates, the tile calculates the radius and angle (`theta`) between the player and the anchor point. It then adjusts the player’s position based on these calculations, creating an arc-like swinging effect.
+
+- **Physics**
+  - The player’s gravity is disabled while swinging.
+  - The swinging direction and speed are calculated by the quadrant of the anchor relative to the player’s starting position.
+  - Collision handling ensures the player remains within the map and interacts correctly with other tiles.
+
+- **Detachment**
+  The player can detach from the anchor at any time by pressing `SPACE`, at which point gravity is re-enabled, and the player can continue on.
+
+### Visual Feedback
+The anchor uses multiple animations to indicate its current state:
+- **Default State** The anchor remains inactive when the player is not nearby (with a yellow outline)
+- **In Range** The anchor highlights when the player is within its interaction radius (with a blue outline).
+- **Webbing** A visual cue appears when the player is actively swinging, including a line connecting the player to the anchor and a green outline.
+
+## Door Key Tile
+
+/* Add image here */
+
+The `DoorKey` enhanced map tile showcases a unique integration to have the ability to pick up items. In this case, we were able to get an enhanced map tile that could spawn on the map and also go to the game panel to show the player had it in their "inventory"
+
+### Picking Up and Assigning the Key to the Player
+- **Interaction**
+  The key continuously checks if it intersects with the player using its `intersects` method to ensure the player can pick up the key.
+
+- **Sound Effects**
+  When the player collects the key, a sound effect is played to give more depth and detail to the level.
+
+- **Assigning the Key**
+  The tile updates the player's state with a boolean to confirm that the player now possesses the key, enabling them to now use the puzzle later in the level.
+
+- **Tile Removal**
+  Once the key is collected, the tile is removed from the map to give consistency to the gameplay.
+
+## Fake/Layered Tiles
+
+The introduction of **Fake/Layered Tiles** enabled a groundbreaking layering system, the first of its kind in the SER225 Platformer Game.
+
+### How It Works
+The **FakeBark**, **FakeDoor**, and **FakeDoorknob** tiles all share the ability to toggle between visibility states. This not only changes their appearance but also alters their behavior in the game.
+
+1. **Layering Concept**
+   - Through using the same sprite sheet for both the fake tiles and the map tiles, we were able to create the same tile that had a different property.
+   - This allows for many creative uses throughout the various levels
+
+2. **Dynamic State Changes**
+   - Each tile has methods to toggle between "DEFAULT" and "TRANSPARENT" states.
+   - The transparency not only changes the tile's animation frame but also its `TileType`, making it passable or interactable as needed.
+
+3. **Player Interaction**
+   - For example, the **FakeBark** interacts with the player and the stick puzzle to turn off a layer of the massive tree in the Outside level, making it seem as if you have walked inside.
+   - Additionally, the **FakeDoor** and **FakeDoorknob** tiles simulate functional doors, with the key puzzle "opening" the door to allow the player to leave
